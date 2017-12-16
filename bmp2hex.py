@@ -2,6 +2,8 @@
 
 ##@file bmp2hex.py
 #  @ingroup util
+#	This is a fork from Robert Gallup
+#
 #	A script for converting a 1-bit bitmap to HEX for use in an Arduino sketch.
 #
 #	The BMP format is well publicized. The byte order of the actual bitmap is a
@@ -104,15 +106,12 @@ def bmp2hex(infile, tablename, tablewidth, sizebytes, invert):
 		else:
 			sizebytes = 1
 
-	# Output the hex table declaration followed by the image x and y size
-	# sizebytes=1: image x/y are single byte sizes
-	# sizebytes=2: image x/y are double byte sizes (big endian)
-	print ('const unsigned char PROGMEM ' + tablename + ' [] = {')
-	if (not (sizebytes%2)):
-		print ("{0:#04X}".format((pixelWidth>>8) & 0xFF) + ", " + "{0:#04X}".format(pixelWidth & 0xFF) + ", " + \
-		      "{0:#04X}".format((pixelHeight>>8) & 0xFF) + ", " + "{0:#04X}".format(pixelHeight & 0xFF) + ",")
-	else:
-		print ("{0:#04X}".format(pixelWidth & 0xFF) + ", " + "{0:#04X}".format(pixelHeight & 0xFF) + ",")
+	# Print the include library for Arduino ESP8266
+
+	print ('#include \"imagedata.h\"')
+	print ('#include <pgmspace.h>')
+	print ('const unsigned char ' + tablename + '[] PROGMEM = {')
+
 	
 	# Get offset to BMP data (Byte 10 of the bmp data)
 	BMPOffset = getLONG(values, 10)
