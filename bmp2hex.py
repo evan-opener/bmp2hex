@@ -46,7 +46,7 @@ def main ():
 	parser.add_argument ("tablename", help="The name of the output table")
 	parser.add_argument ("-i", "--invert", help="Inverts bitmap pixels", action="store_true")
 	parser.add_argument ("-w", "--width", help="Output table width in hex bytes [default: 16]", type=int)
-	parser.add_argument ("-b", "--bytes", help="Byte width of BMP sizes: 0=auto, 1, or 2 (big endian) [default: 0]", type=int)
+	#parser.add_argument ("-b", "--bytes", help="Byte width of BMP sizes: 0=auto, 1, or 2 (big endian) [default: 0]", type=int)
 	args = parser.parse_args()
 
 	# Required arguments
@@ -58,18 +58,18 @@ def main ():
 		invert = args.invert
 	if args.width:
 		tablewidth = args.width
-	if args.bytes:
-		sizebytes = args.bytes % 3
+	#if args.bytes:
+	#	sizebytes = args.bytes % 3
 
 	# Do the work
-	bmp2hex(infile, tablename, tablewidth, sizebytes, invert)
+	bmp2hex(infile, tablename, tablewidth, invert)
 
 # Utility function. Return a long int from array (little endian)
 def getLONG(a, n):
 	return (a[n+3] * (2**24)) + (a[n+2] * (2**16)) + (a[n+1] * (2**8)) + (a[n])
 
 # Main conversion function
-def bmp2hex(infile, tablename, tablewidth, sizebytes, invert):
+def bmp2hex(infile, tablename, tablewidth, invert):
 
 	invertbyte = 0x00 if invert else 0xFF
 
