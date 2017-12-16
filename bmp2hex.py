@@ -31,6 +31,10 @@
 
 import sys, array, os, textwrap, math, random, argparse
 
+# Todo:
+# Manage the file object to this convert function
+# Rename the main function
+# Pass the file object as the parameter of the main function
 def main ():
 
 	# Default parameters
@@ -38,7 +42,7 @@ def main ():
 	tablename = ""
 	tablewidth = 16
 	sizebytes = 0
-	invert = False
+	invert = True
 
 	# Set up parser and handle arguments
 	parser = argparse.ArgumentParser()
