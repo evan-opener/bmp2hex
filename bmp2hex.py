@@ -73,7 +73,7 @@ def getLONG(a, n):
 	return (a[n+3] * (2**24)) + (a[n+2] * (2**16)) + (a[n+1] * (2**8)) + (a[n])
 
 # Main conversion function
-def bmp2hex(infile, tablename, tablewidth, invert):
+def bmp2hex(infile, tablename, tablewidth, invert = True):
 
 	invertbyte = 0x00 if invert else 0xFF
 
