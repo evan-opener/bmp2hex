@@ -1,5 +1,6 @@
 {
     "terminal.integrated.env.osx": {
         "PATH": "/Users/xuyan/.platformio/penv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    }
+    },
+    "python.pythonPath": "/usr/local/bin/python"
 }
